@@ -14,7 +14,7 @@ class RiaNewsPageParser(NewsPageParser):
 
 class RiaNewsSite(NewsSite):
     def __init__(self) -> None:
-        super().__init__(parser=RiaNewsPageParser())
+        super().__init__(parser=RiaNewsPageParser(), site_name='ria.ru')
         self._required_date: datetime = datetime.now()
         self._is_required_date = True
 

@@ -18,7 +18,8 @@ class NewsPageParser(ABC):
 
 
 class NewsSite(ABC):
-    def __init__(self, parser: NewsPageParser) -> None:
+    def __init__(self, parser: NewsPageParser, site_name: str) -> None:
+        self.site_name = site_name
         self._parser = parser
 
     def provide_today_news_page(self) -> list[str]:
