@@ -69,9 +69,3 @@ class RiaNewsSite(NewsSite):
     @staticmethod
     def _provide_next_url(soup: BeautifulSoup) -> str:
         return f"https://ria.ru{soup.find(name='div', class_='list-items-loaded')['data-next-url']}/"
-
-
-if __name__ == '__main__':
-    urls_ = RiaNewsSite().provide_news_pages_for(date=datetime.now() - timedelta(days=2))
-    print(urls_)
-    print(len(urls_))
