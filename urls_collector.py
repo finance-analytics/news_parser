@@ -18,7 +18,8 @@ def launch_spider(site: NewsSite, start_date: str, show_progress: bool | None = 
         date_ += timedelta(days=1)
 
         if show_progress:
-            sys.stdout.write(f"\rProgress ({site.site_name}): {i / day_delta * 100 :.3f}%\tProblems: {problems}")
+            sys.stdout.write(f"\rProgress ({site.site_name}): {i / day_delta * 100 :.3f}%\tProblems: {problems}\t"
+                             f"Date: {date_.strftime('%d.%m.%Y')}")
             sys.stdout.flush()
 
         if os.path.exists(_provide_path_to_file(site_name=site.site_name, date=date_)):
@@ -38,6 +39,9 @@ def _provide_path_to_file(site_name: str, date: datetime) -> str:
 
 
 def _save_urls(site_name: str, date: datetime, urls: list[str]) -> None:
+    if not urls:
+        return
+
     if not os.path.exists(DIR_WITH_URLS):
         os.mkdir(DIR_WITH_URLS)
     if not os.path.exists(f"{DIR_WITH_URLS}/{site_name}"):
